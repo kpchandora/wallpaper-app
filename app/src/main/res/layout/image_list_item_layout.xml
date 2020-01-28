@@ -15,12 +15,11 @@
         app:cardElevation="4dp">
 
         <ImageView
-            android:minHeight="100dp"
             android:id="@+id/image_item_iv"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:maxHeight="250dp"
-            tools:src="@tools:sample/avatars" />
+            android:layout_height="200dp"
+            android:adjustViewBounds="true"
+            android:src="@drawable/ic_image_black_24dp" />
 
     </androidx.cardview.widget.CardView>
 

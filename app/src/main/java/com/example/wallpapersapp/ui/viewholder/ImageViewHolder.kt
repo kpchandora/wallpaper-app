@@ -13,18 +13,23 @@ class ImageViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
     fun bind(model: ImageModel) {
         model.apply {
             if (!url.isNullOrEmpty()) {
-                RequestOptions()
-                    .error(R.drawable.ic_image_black_24dp)
-                    .also { options ->
-                        Glide.with(view).load(url)
-                            .thumbnail(0.1f)
-                            .apply(options)
-                            .into(view.image_item_iv)
-                    }
-            } else {
-
+                loadImage(url)
+            } else if (!hdUrl.isNullOrEmpty()) {
+                loadImage(hdUrl)
             }
         }
+    }
+
+    private fun loadImage(url: String) {
+        RequestOptions()
+            .centerCrop()
+            .error(R.drawable.ic_image_black_24dp)
+            .also { options ->
+                Glide.with(view).asBitmap().load(url)
+                    .thumbnail(0.1f)
+                    .apply(options)
+                    .into(view.image_item_iv)
+            }
     }
 
 }
