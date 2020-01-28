@@ -1,22 +1,18 @@
-package com.example.wallpapersapp.ui
+package com.example.wallpapersapp.ui.activity
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.wallpapersapp.R
 import com.example.wallpapersapp.data.models.ImageModel
 import com.example.wallpapersapp.ui.adapter.ImageAdapter
 import com.example.wallpapersapp.viewmodels.ImageViewModel
-import com.google.gson.Gson
-import com.google.gson.stream.JsonReader
 import kotlinx.android.synthetic.main.activity_main.*
-import java.io.InputStreamReader
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), ImageAdapter.OnImageClickListener {
 
     private lateinit var mImageViewModel: ImageViewModel
 
@@ -27,6 +23,7 @@ class MainActivity : AppCompatActivity() {
         mImageViewModel = ViewModelProviders.of(this).get(ImageViewModel::class.java)
 
         val imageAdapter = ImageAdapter()
+        imageAdapter.setListener(this)
 
         recyclerView.apply {
             setHasFixedSize(true)
@@ -40,6 +37,13 @@ class MainActivity : AppCompatActivity() {
 
         mImageViewModel.loadData()
 
+    }
+
+    override fun onImageClick(model: ImageModel) {
+        Intent(this, ImageDetailsActivity::class.java).also {
+            it.putExtra("ImageModel", model)
+            startActivity(it)
+        }
     }
 
 

@@ -25,7 +25,7 @@ class ImageViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
             .centerCrop()
             .error(R.drawable.ic_image_black_24dp)
             .also { options ->
-                Glide.with(view).asBitmap().load(url)
+                Glide.with(view).load(url)
                     .thumbnail(0.1f)
                     .apply(options)
                     .into(view.image_item_iv)
