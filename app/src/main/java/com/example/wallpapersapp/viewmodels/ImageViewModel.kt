@@ -7,6 +7,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import com.example.wallpapersapp.data.models.ImageModel
 import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import com.google.gson.stream.JsonReader
 import java.io.InputStreamReader
 
@@ -38,7 +39,11 @@ class ImageViewModel(private val context: Application) : AndroidViewModel(contex
                     JsonReader(InputStreamReader(context.assets.open("data.json")))
 
                 jsonReader?.apply {
-                    Gson().fromJson<List<ImageModel>>(this, List::class.java)?.apply {
+                    val imageList = Gson().fromJson<List<ImageModel>>(
+                        this,
+                        object : TypeToken<List<ImageModel>>() {}.type
+                    )
+                    imageList?.apply {
                         imageData.postValue(this)
                         return@execute
                     }
