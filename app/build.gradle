@@ -10,6 +10,8 @@ project.ext {
     ktx = "1.1.0"
     gson = "2.8.6"
     appCompat = "1.1.0"
+    cardView = "1.0.0"
+    recyclerView = "1.1.0"
 }
 
 apply plugin: 'com.android.application'
@@ -45,8 +47,8 @@ dependencies {
     implementation "androidx.appcompat:appcompat:$project.appCompat"
     implementation "androidx.core:core-ktx:$project.ktx"
     implementation "androidx.constraintlayout:constraintlayout:$project.constraintlayout"
-    implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation "androidx.appcompat:appcompat:$project.appCompat"
+    implementation "androidx.constraintlayout:constraintlayout:$project.constraintlayout"
     testImplementation "junit:junit:$project.jUnit"
     androidTestImplementation "androidx.test.ext:junit:$project.jUnitTest"
     androidTestImplementation "androidx.test.espresso:espresso-core:$project.espresso"
@@ -59,10 +61,14 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-runtime:$project.arch"
     implementation "androidx.lifecycle:lifecycle-extensions:$project.arch"
 
-    //Glide
+    // Glide
     implementation "com.github.bumptech.glide:glide:$project.glide"
     annotationProcessor "com.github.bumptech.glide:compiler:$project.glide"
-    implementation 'androidx.cardview:cardview:1.0.0'
-    implementation 'androidx.recyclerview:recyclerview:1.1.0'
+
+    // CardView
+    implementation "androidx.cardview:cardview:$project.cardView"
+
+    // RecyclerView
+    implementation "androidx.recyclerview:recyclerview:$project.recyclerView"
 
 }
