@@ -2,6 +2,8 @@ package com.example.wallpapersapp.ui.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.wallpapersapp.R
@@ -31,12 +33,21 @@ class ImageDetailsActivity : AppCompatActivity() {
                         }
                 }
 
-                image_details_title_tv.text = title ?: ""
-                image_details_desc_tv.text = explanation ?: ""
-                image_details_copyright_tv.text = copyright ?: ""
+                handleEmptyOrNullText(view = image_details_title_tv, value = title)
+                handleEmptyOrNullText(view = image_details_desc_tv, value = explanation)
+                handleEmptyOrNullText(view = image_details_copyright_tv, value = copyright)
 
             }
         }
-
     }
+
+    private fun handleEmptyOrNullText(view: TextView, value: String?) {
+        if (value.isNullOrEmpty()) {
+            view.visibility = View.GONE
+        } else {
+            view.visibility = View.VISIBLE
+            view.text = value
+        }
+    }
+
 }
